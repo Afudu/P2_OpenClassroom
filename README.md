@@ -70,6 +70,6 @@ To run each of the four scripts, in the terminal (Unix, macOS) or command line (
 
   python script_file.py
 
-Example: to run the first script, type the below command hit Enter
+Example: to run the first script, type the below command and then hit Enter.
 
   python Seydou_Abdoulbaki_1_Scrap_Book.py
