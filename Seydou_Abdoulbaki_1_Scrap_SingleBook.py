@@ -17,6 +17,13 @@ Then save the data to a csv file.
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
+
+# the folder that will contain the extracts
+path = 'extracts/csv'
+
+# create the folder if it does not exist
+os.makedirs(path, exist_ok=True)
 
 # url to scrape : page of Requiem Red book
 book_page_url = "http://books.toscrape.com/catalogue/the-requiem-red_995/index.html"

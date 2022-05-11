@@ -6,7 +6,16 @@ download and save the image file for each product page that you visit!
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
 
+# the list of folders that will contain the extracts
+paths = ['extracts/img', 'extracts/csv/categories']
+
+# create the folders if they do not exist
+for path in paths:
+    os.makedirs(path, exist_ok=True)
+
+# category_url_variable
 category_url_index = "index.html"
 
 # initialize book urls

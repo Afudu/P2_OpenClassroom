@@ -8,9 +8,16 @@ You should write the data to a separate CSV for each book category.
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
 
+# the folder that will contain the extracts
+path = 'extracts/csv/categories'
+
+# create the folder if it does not exist
+os.makedirs(path, exist_ok=True)
+
+# category_url_variable
 category_url_index = "index.html"
-# category_url_variable = "index.html"
 
 # initialize book urls
 book_url_list = []

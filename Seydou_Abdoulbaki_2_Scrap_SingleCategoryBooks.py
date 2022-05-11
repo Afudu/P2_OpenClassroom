@@ -16,6 +16,13 @@ this scenario automatically!
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
+
+# the folder that will contain the extracts
+path = 'extracts/csv'
+
+# create the folder if it does not exist
+os.makedirs(path, exist_ok=True)
 
 # category url to scrape : page of Requiem Red book
 category_url = "http://books.toscrape.com/catalogue/category/books/young-adult_21/index.html"
