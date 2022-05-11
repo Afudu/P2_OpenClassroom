@@ -22,7 +22,7 @@ The repository contains four scripts:
 
 2 - Seydou_Abdoulbaki_2_Scrap_SingleCategoryBooks.py : extracts the data for all books in a single category, and stores it in a csv file.
 
-3 - Seydou_Abdoulbaki_3_Scrap_AllBooks.py : extracts the data for all books for all categories, and stores the data in a csv files per category.
+3 - Seydou_Abdoulbaki_3_Scrap_AllBooks.py : extracts the data for all books for all categories, and stores the data in separate csv files per category.
 
 4 - Seydou_Abdoulbaki_4_Scrap_AllBookImages.py : extends the previous by downloading and storing the image for each book.
 
@@ -70,6 +70,6 @@ To run each of the four scripts, in the terminal (Unix, macOS) or command line (
 
   python script_file.py
 
-Example: to run the first script, type the below command hit Enter
+Example: to run the first script, type the below command and then hit Enter.
 
   python Seydou_Abdoulbaki_1_Scrap_Book.py
