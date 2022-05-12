@@ -18,13 +18,13 @@ We use respectively Requests, BeautifulSoup and CSV, three dedicated Python libr
 
 - The repository contains four scripts:
 
-   **1 -** Seydou_Abdoulbaki_1_Scrap_SingleBook.py : extracts the data for a single book, and stores it in a csv file.
+    **1 -** Seydou_Abdoulbaki_1_Scrap_SingleBook.py : extracts the data for a single book, and stores it in a csv file.
 
-   **2 -** Seydou_Abdoulbaki_2_Scrap_SingleCategoryBooks.py : extracts the data for all books in a single category, and stores it in a csv file.
+    **2 -** Seydou_Abdoulbaki_2_Scrap_SingleCategoryBooks.py : extracts the data for all books in a single category, and stores it in a csv file.
 
-   **3 -** Seydou_Abdoulbaki_3_Scrap_AllBooks.py : extracts the data for all books in all categories, and stores the data in separate csv files per category.
+    **3 -** Seydou_Abdoulbaki_3_Scrap_AllBooks.py : extracts the data for all books in all categories, and stores the data in separate csv files per category.
 
-   **4 -** Seydou_Abdoulbaki_4_Scrap_AllBookImages.py : extends the previous by downloading and storing the image for each book.
+    **4 -** Seydou_Abdoulbaki_4_Scrap_AllBookImages.py : extends the previous by downloading and storing the image for each book.
 
 # Requirement
 
