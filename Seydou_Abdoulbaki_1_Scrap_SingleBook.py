@@ -19,10 +19,10 @@ from bs4 import BeautifulSoup
 import csv
 import os
 
-# the folder that will contain the extracts
+# The folder that will contain the extracts.
 path = 'extracts/csv'
 
-# create the folder if it does not exist
+# Create the folder if it does not exist.
 os.makedirs(path, exist_ok=True)
 
 # url to scrape : page of Requiem Red book
