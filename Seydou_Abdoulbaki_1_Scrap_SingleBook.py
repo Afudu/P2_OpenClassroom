@@ -29,8 +29,7 @@ os.makedirs(path, exist_ok=True)
 book_page_url = "http://books.toscrape.com/catalogue/the-requiem-red_995/index.html"
 book_page = requests.get(book_page_url)
 
-# Write a Python script that visits this page and extracts
-# the book_data
+# Script that visits the book_page_url and extracts the book_data.
 if book_page.status_code == 200:
 
     # BeautifulSoup object

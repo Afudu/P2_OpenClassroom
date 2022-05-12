@@ -37,8 +37,7 @@ fieldnames = ['product_page_url', 'universal_ product_code', 'title', 'price_inc
               'review_rating', 'image_url']
 
 
-# Write a Python script that visits this page and extracts
-# the book_data
+# A function that visits each book_url, extracts and returns the book_data.
 def extract_book_data(book_page_url):
     book_page = requests.get(book_page_url)
     if book_page:
@@ -97,8 +96,8 @@ def extract_book_data(book_page_url):
     return book_data
 
 
-# Python script that visits this category page and extracts the product page URL
-# for each book in the category
+# A function that visits a category page, then extracts the book urls and stores them in
+# the book_url_list
 def extract_book_urls(category_page_url):
     global category_url_index
     category_page = requests.get(category_page_url)
@@ -112,7 +111,7 @@ def extract_book_urls(category_page_url):
         book_url_cleaned = book_url_href.replace("../../..", "http://books.toscrape.com/catalogue")
         book_url_list.append(book_url_cleaned)
 
-    # check whether pagination exists, and if so, get the next page url to extract its books
+    # check whether pagination exists, and if so, get the next page url to extract its books.
     if category_soup.find("li", class_="next"):
         next_page_link = category_soup.find("li", class_="next")
         next_page_href = next_page_link.find("a")["href"]
@@ -121,7 +120,7 @@ def extract_book_urls(category_page_url):
         extract_book_urls(next_page_url)
 
 
-# Extract all book urls of chosen category.
+# Call the function extracting all book urls of the chosen category ( = category_url).
 extract_book_urls(category_url)
 
 # Write the data to a CSV file.
