@@ -16,9 +16,9 @@ extract the data, and then store it in files. This process is known as web scrap
 
 We use respectively Requests, BeautifulSoup and CSV, three dedicated Python libraries, for achieving the tasks.
 
-The repository contains four scripts:
+- The repository contains four scripts:
 
-**1 -** Seydou_Abdoulbaki_1_Scrap_SingleBook.py : extracts the data for a single book, and stores it in a csv file.
+   **1 -** Seydou_Abdoulbaki_1_Scrap_SingleBook.py : extracts the data for a single book, and stores it in a csv file.
 
 **2 -** Seydou_Abdoulbaki_2_Scrap_SingleCategoryBooks.py : extracts the data for all books in a single category, and stores it in a csv file.
 
