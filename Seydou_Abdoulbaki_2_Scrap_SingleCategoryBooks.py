@@ -12,11 +12,11 @@ Note: some category pages have more than 20 books listed, so they are spread
 across different pages (‘pagination’). Your application should be able to handle
 this scenario automatically!
 """
-
+import os
 import requests
 from bs4 import BeautifulSoup
 import csv
-import os
+
 
 # the folder that will contain the extracts
 path = 'extracts/csv'

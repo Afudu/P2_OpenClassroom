@@ -2,11 +2,10 @@
 task4:
 download and save the image file for each product page that you visit!
 """
-
+import os
 import requests
 from bs4 import BeautifulSoup
 import csv
-import os
 
 # the list of folders that will contain the extracts
 paths = ['extracts/img', 'extracts/csv/categories']

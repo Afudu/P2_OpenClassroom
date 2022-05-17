@@ -4,11 +4,10 @@ write a script that extracts all the book categories available,
 and then extracts product information for all books across all the different categories.
 You should write the data to a separate CSV for each book category.
 """
-
+import os
 import requests
 from bs4 import BeautifulSoup
 import csv
-import os
 
 # the folder that will contain the extracts
 path = 'extracts/csv/categories'
