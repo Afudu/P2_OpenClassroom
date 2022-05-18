@@ -34,7 +34,7 @@ fieldnames = ['product_page_url', 'universal_ product_code', 'title', 'price_inc
 # A function that visits each book_url, extracts and returns the book_data.
 def extract_book_data(book_page_url):
     book_page = requests.get(book_page_url)
-    if book_page.status_code == 200:
+    if book_page:
 
         # BeautifulSoup object
         book_soup = BeautifulSoup(book_page.content, 'html.parser')
