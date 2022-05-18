@@ -60,7 +60,7 @@ The following commands rely on the knowlege of the terminal (Unix, macOS) or com
 
 **5 - Securely upgrade pip**
 
- * Unix/macOS/Windows: pip install --upgrade pip
+ * Unix/macOS/Windows: pip install --upgrade --user pip
 
 **6 - Install all dependencies**
 
