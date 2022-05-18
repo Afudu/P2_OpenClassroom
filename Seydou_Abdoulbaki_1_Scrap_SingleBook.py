@@ -86,7 +86,6 @@ if book_page.status_code == 200:
     image_source = book_soup.find("img")['src']
     image_url = image_source.replace("../..", "http://books.toscrape.com")
 
-    # book data
     book_data = [book_page_url, universal_product_code, book_title_text, price_including_tax,
                  price_excluding_tax, number_available_cleaned, product_description, category,
                  review_rating, image_url]

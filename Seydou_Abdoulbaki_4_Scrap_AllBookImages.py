@@ -89,7 +89,6 @@ def extract_book_data(book_page_url):
         with open('extracts/img/'+image_file_name, "wb") as image_file:
             image_file.write(image_page.content)
 
-        # book data
         book_data = [product_page_url, universal_product_code, book_title_text, price_including_tax,
                      price_excluding_tax, number_available_cleaned, product_description, category,
                      review_rating, image_url]
