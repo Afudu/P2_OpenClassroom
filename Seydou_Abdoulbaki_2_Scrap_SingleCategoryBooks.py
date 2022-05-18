@@ -24,7 +24,7 @@ path = 'extracts/csv'
 # create the folder if it does not exist
 os.makedirs(path, exist_ok=True)
 
-# category url to scrape : page of Requiem Red book
+# category url to scrape : Young Adult Category
 category_url = "http://books.toscrape.com/catalogue/category/books/young-adult_21/index.html"
 category_url_index = "index.html"
 
