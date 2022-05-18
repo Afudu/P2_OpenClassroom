@@ -34,6 +34,8 @@ You can download the latest version for your system from : https://www.python.or
 
 # Installation
 
+The following commands rely on the knowlege of the terminal (Unix, macOS) or command line (Windows) usage.
+
 **1 - Get the code**
 
   * $ git clone https://github.com/Afudu/P2_OpenClassroom.git
@@ -66,10 +68,6 @@ You can download the latest version for your system from : https://www.python.or
 
 # Running the code
 
-To run each of the four scripts, in the terminal (Unix, macOS) or command line (Windows), type python followed by the file name then hit Enter:
+To run each of the four scripts, in the terminal (Unix, macOS) or command line (Windows):
 
   python script_file.py
-
-Example: to run the first script, type the below command and then hit Enter.
-
-  python Seydou_Abdoulbaki_1_Scrap_Book.py
