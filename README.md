@@ -25,6 +25,8 @@ We use respectively Requests, BeautifulSoup and CSV, three dedicated Python libr
     **3 -** Seydou_Abdoulbaki_3_Scrap_AllBooks.py : extracts the data for all books in all categories, and stores the data in separate csv files per category.
 
     **4 -** Seydou_Abdoulbaki_4_Scrap_AllBookImages.py : extends the previous by downloading and storing the image for each book.
+    
+      The extracts are saved in the [extracts/] folder that will be created.
 
 # Requirement
 
