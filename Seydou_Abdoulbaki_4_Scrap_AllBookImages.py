@@ -14,9 +14,6 @@ paths = ['extracts/img', 'extracts/csv/categories']
 for path in paths:
     os.makedirs(path, exist_ok=True)
 
-# create the folder if it does not exist
-os.makedirs(path, exist_ok=True)
-
 # category_url_variable
 category_url_index = "index.html"
 
