@@ -94,7 +94,8 @@ else:
     print('The book page is unavailable. Please check the URL and retry again.')
 
 # Write the data to a CSV file.
-with open('extracts/csv/P2_1_Scrap_SingleBookPage.csv', 'w', newline='', encoding='utf-8') as csv_file:
+filename = 'P2_1_Scrap_SingleBookPage.csv'
+with open('extracts/csv/' + filename, 'w', newline='', encoding='utf-8') as csv_file:
     csv_writer = csv.writer(csv_file)
     csv_writer.writerow(fieldnames)
     csv_writer.writerow(book_data)
