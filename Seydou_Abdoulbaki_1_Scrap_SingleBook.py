@@ -29,6 +29,12 @@ os.makedirs(path, exist_ok=True)
 book_page_url = "http://books.toscrape.com/catalogue/the-requiem-red_995/index.html"
 book_page = requests.get(book_page_url)
 
+# csv header
+fieldnames = ['product_page_url', 'universal_ product_code', 'title', 'price_including_tax',
+              'price_excluding_tax', 'number_available', 'product_description', 'category',
+              'review_rating', 'image_url']
+
+
 # Script that visits the book_page_url and extracts the book_data.
 if book_page.status_code == 200:
 
@@ -36,28 +42,28 @@ if book_page.status_code == 200:
     book_soup = BeautifulSoup(book_page.content, 'html.parser')
 
     # product_page_url
-    product_page_url = book_page_url
+    # product_page_url = book_page_url
 
-    # title
+    # book title
     book_title = book_soup.find("li", class_="active")
-    title = book_title.text
+    book_title_text = book_title.text
 
     # product information  - contained in a table
-    book_table = book_soup.find("table", class_="table")
-    book_table_td = book_table.find_all("td")
+    book_table_class = book_soup.find("table", class_="table")
+    book_table_tds = book_table_class.find_all("td")
 
     # universal_ product_code (upc)
-    universal_product_code = book_table_td[0].text
+    universal_product_code = book_table_tds[0].text
 
     # price_excluding_tax
-    price_excluding_tax = book_table_td[2].text
+    price_excluding_tax = book_table_tds[2].text
 
     # price_including_tax
-    price_including_tax = book_table_td[3].text
+    price_including_tax = book_table_tds[3].text
 
     # number_available
-    number_available_text = book_table_td[5].text
-    number_available = number_available_text.replace("In stock (", "").replace("available)", "").strip()
+    number_available_text = book_table_tds[5].text
+    number_available_cleaned = number_available_text.replace("In stock (", "").replace("available)", "").strip()
 
     # product_description - contained in <p> tag
     all_p_tags = book_soup.find_all("p")
@@ -72,7 +78,7 @@ if book_page.status_code == 200:
     string_to_numbers = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
     star_rating_class = book_soup.find("p", class_="star-rating")['class']
     star_rating_text = star_rating_class[1]
-    for (index, string) in enumerate(string_to_numbers):
+    for string in string_to_numbers:
         if string == star_rating_text:
             review_rating = string_to_numbers[string]
 
@@ -81,14 +87,11 @@ if book_page.status_code == 200:
     image_url = image_source.replace("../..", "http://books.toscrape.com")
 
     # book data
-    book_data = [product_page_url, universal_product_code, title, price_including_tax,
-                 price_excluding_tax, number_available, product_description, category,
+    book_data = [book_page_url, universal_product_code, book_title_text, price_including_tax,
+                 price_excluding_tax, number_available_cleaned, product_description, category,
                  review_rating, image_url]
-
-# csv header
-fieldnames = ['product_page_url', 'universal_ product_code', 'title', 'price_including_tax',
-              'price_excluding_tax', 'number_available', 'product_description', 'category',
-              'review_rating', 'image_url']
+else:
+    print('The book page is unavailable. Please check the URL and retry again.')
 
 # Write the data to a CSV file.
 with open('extracts/csv/P2_1_Scrap_SingleBookPage.csv', 'w', newline='', encoding='utf-8') as csv_file:

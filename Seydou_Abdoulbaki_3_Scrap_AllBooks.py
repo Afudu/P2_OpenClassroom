@@ -34,7 +34,7 @@ fieldnames = ['product_page_url', 'universal_ product_code', 'title', 'price_inc
 # A function that visits each book_url, extracts and returns the book_data.
 def extract_book_data(book_page_url):
     book_page = requests.get(book_page_url)
-    if book_page:
+    if book_page.status_code == 200:
 
         # BeautifulSoup object
         book_soup = BeautifulSoup(book_page.content, 'html.parser')
@@ -42,25 +42,26 @@ def extract_book_data(book_page_url):
         # product_page_url
         product_page_url = book_page_url
 
-        # title
+        # book title
         book_title = book_soup.find("li", class_="active")
-        title = book_title.text
+        book_title_text = book_title.text
 
         # product information  - contained in a table
-        book_table = book_soup.find("table", class_="table")
-        book_table_td = book_table.find_all("td")
+        book_table_class = book_soup.find("table", class_="table")
+        book_table_tds = book_table_class.find_all("td")
 
         # universal_ product_code (upc)
-        universal_product_code = book_table_td[0].text
+        universal_product_code = book_table_tds[0].text
 
         # price_excluding_tax
-        price_excluding_tax = book_table_td[2].text
+        price_excluding_tax = book_table_tds[2].text
 
         # price_including_tax
-        price_including_tax = book_table_td[3].text
+        price_including_tax = book_table_tds[3].text
 
         # number_available
-        number_available = book_table_td[5].text.replace("In stock (", "").replace("available)", "").strip()
+        number_available_text = book_table_tds[5].text
+        number_available_cleaned = number_available_text.replace("In stock (", "").replace("available)", "").strip()
 
         # product_description - contained in <p> tag
         all_p_tags = book_soup.find_all("p")
@@ -75,7 +76,7 @@ def extract_book_data(book_page_url):
         string_to_numbers = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
         star_rating_class = book_soup.find("p", class_="star-rating")['class']
         star_rating_text = star_rating_class[1]
-        for (index, string) in enumerate(string_to_numbers):
+        for string in string_to_numbers:
             if string == star_rating_text:
                 review_rating = string_to_numbers[string]
 
@@ -84,18 +85,20 @@ def extract_book_data(book_page_url):
         image_url = image_source.replace("../..", "http://books.toscrape.com")
 
         # book data
-        book_data = [product_page_url, universal_product_code, title, price_including_tax,
-                     price_excluding_tax, number_available, product_description, category,
+        book_data = [product_page_url, universal_product_code, book_title_text, price_including_tax,
+                     price_excluding_tax, number_available_cleaned, product_description, category,
                      review_rating, image_url]
-    return book_data
+        return book_data
+    else:
+        print('The url' + book_page_url + 'is unavailable. Please check the URL and retry again.')
 
 
 # A function that visits a category page, then extracts the book urls and stores them in
 # the book_url_list
 def extract_book_urls(category_page_url):
     global category_url_index
-    category_page = requests.get(category_page_url)
-    soup = BeautifulSoup(category_page.content, 'html.parser')
+    category_page_content = requests.get(category_page_url)
+    soup = BeautifulSoup(category_page_content.content, 'html.parser')
     category_url_root = category_page_url.replace(category_url_index, "")
     book_urls = soup.find_all("h3")  # all book urls are in h3 tags, and each in class="product_pod"
 
@@ -118,40 +121,47 @@ def extract_book_urls(category_page_url):
 def extract_category_urls():
     main_url = "http://books.toscrape.com/"
     home_page = requests.get(main_url)
-    home_soup = BeautifulSoup(home_page.content, 'html.parser')
-    category_url_container = home_soup.find("ul", class_="nav-list")
-    category_url_links = category_url_container.find_all("a")
+    if home_page:
+        home_soup = BeautifulSoup(home_page.content, 'html.parser')
+        category_url_container = home_soup.find("ul", class_="nav-list")
+        category_url_links = category_url_container.find_all("a")
 
-    # loop over the category_url_links to extract the urls and titles for filenames
-    for index in range(len(category_url_links)):
-        category_url_href = category_url_links[index]["href"]
-        category_url_cleaned = main_url + category_url_href
-        category_url_list.append(category_url_cleaned)
+        # loop over the category_url_links to extract the urls and titles to be used as filenames
+        for index in range(len(category_url_links)):
+            category_url_href = category_url_links[index]["href"]
+            category_url_cleaned = main_url + category_url_href
+            category_url_list.append(category_url_cleaned)
 
-        category_title = category_url_links[index].text.strip()
-        category_title_list.append(category_title)
-    # remove the first items - the headers
-    category_url_list.pop(0)
-    category_title_list.pop(0)
+            category_title = category_url_links[index].text.strip().replace(" ", "_")
+            category_title_list.append(category_title)
+        # remove the first items - the headers
+        category_url_list.pop(0)
+        category_title_list.pop(0)
+    else:
+        print('The url' + main_url + 'is unavailable. Please check the URL and retry again.')
 
 
 # Call the function that extracts all category urls.
 extract_category_urls()
 
-# print("There are "+len(category_url_list)+" categories")
-
 # Extract all book_urls for each category then write their data in a csv file
 # with the category title in the file name.
 for (idx, category_url) in enumerate(category_url_list):
-    category_page = requests.get(category_url)
+    category_page_request = requests.get(category_url)
 
-    if category_page:
+    if category_page_request:
         filename = "P2_3_Category" + str(idx + 1) + "_" + category_title_list[idx] + ".csv"
         extract_book_urls(category_url)
 
-    # Write the data to a CSV file.
-    with open('extracts/csv/categories/' + filename, 'w', newline='', encoding='utf-8') as csv_file:
-        csv_file_writer = csv.writer(csv_file)
-        csv_file_writer.writerow(fieldnames)
-        for book_url in book_url_list:
-            csv_file_writer.writerow(extract_book_data(book_url))
+        # Write the data to a CSV file.
+        with open('extracts/csv/categories/' + filename, 'w', newline='', encoding='utf-8') as csv_file:
+            csv_file_writer = csv.writer(csv_file)
+            csv_file_writer.writerow(fieldnames)
+            for book_url in book_url_list:
+                csv_file_writer.writerow(extract_book_data(book_url))
+        # reset book_url_list and category_url_index to resume next category_url extract
+        book_url_list = []
+        category_url_index = "index.html"
+    else:
+        print('The URL' + category_url + 'is unavailable. Please check the URL and retry again.')
+

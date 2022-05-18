@@ -40,7 +40,7 @@ fieldnames = ['product_page_url', 'universal_ product_code', 'title', 'price_inc
 # A function that visits each book_url, extracts and returns the book_data.
 def extract_book_data(book_page_url):
     book_page = requests.get(book_page_url)
-    if book_page:
+    if book_page.status_code == 200:
 
         # BeautifulSoup object
         book_soup = BeautifulSoup(book_page.content, 'html.parser')
@@ -48,25 +48,26 @@ def extract_book_data(book_page_url):
         # product_page_url
         product_page_url = book_page_url
 
-        # title
+        # book title
         book_title = book_soup.find("li", class_="active")
-        title = book_title.text
+        book_title_text = book_title.text
 
         # product information  - contained in a table
-        book_table = book_soup.find("table", class_="table")
-        book_table_td = book_table.find_all("td")
+        book_table_class = book_soup.find("table", class_="table")
+        book_table_tds = book_table_class.find_all("td")
 
         # universal_ product_code (upc)
-        universal_product_code = book_table_td[0].text
+        universal_product_code = book_table_tds[0].text
 
         # price_excluding_tax
-        price_excluding_tax = book_table_td[2].text
+        price_excluding_tax = book_table_tds[2].text
 
         # price_including_tax
-        price_including_tax = book_table_td[3].text
+        price_including_tax = book_table_tds[3].text
 
         # number_available
-        number_available = book_table_td[5].text.replace("In stock (", "").replace("available)", "").strip()
+        number_available_text = book_table_tds[5].text
+        number_available_cleaned = number_available_text.replace("In stock (", "").replace("available)", "").strip()
 
         # product_description - contained in <p> tag
         all_p_tags = book_soup.find_all("p")
@@ -81,7 +82,7 @@ def extract_book_data(book_page_url):
         string_to_numbers = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
         star_rating_class = book_soup.find("p", class_="star-rating")['class']
         star_rating_text = star_rating_class[1]
-        for (index, string) in enumerate(string_to_numbers):
+        for string in string_to_numbers:
             if string == star_rating_text:
                 review_rating = string_to_numbers[string]
 
@@ -90,10 +91,12 @@ def extract_book_data(book_page_url):
         image_url = image_source.replace("../..", "http://books.toscrape.com")
 
         # book data
-        book_data = [product_page_url, universal_product_code, title, price_including_tax,
-                     price_excluding_tax, number_available, product_description, category,
+        book_data = [product_page_url, universal_product_code, book_title_text, price_including_tax,
+                     price_excluding_tax, number_available_cleaned, product_description, category,
                      review_rating, image_url]
-    return book_data
+        return book_data
+    else:
+        print('The book page is unavailable. Please check the URL and retry again.')
 
 
 # A function that visits a category page, then extracts the book urls and stores them in
