@@ -1,16 +1,18 @@
 """
-task3:
-write a script that extracts all the book categories available,
-and then extracts product information for all books across all the different categories.
-You should write the data to a separate CSV for each book category.
+task4:
+Finally, extend your existing work to download and save the image file for each product page that you visit!
 """
 import os
 import requests
 from bs4 import BeautifulSoup
 import csv
 
-# the folder that will contain the extracts
-path = 'extracts/csv/categories'
+# the list of folders that will contain the extracts
+paths = ['extracts/img', 'extracts/csv/categories']
+
+# create the folders if they do not exist
+for path in paths:
+    os.makedirs(path, exist_ok=True)
 
 # create the folder if it does not exist
 os.makedirs(path, exist_ok=True)
@@ -138,7 +140,7 @@ def extract_category_urls():
             category_url_cleaned = main_url + category_url_href
             category_url_list.append(category_url_cleaned)
 
-            category_title = category_url_links[index].text.strip()
+            category_title = category_url_links[index].text.strip().replace(" ", "_")
             category_title_list.append(category_title)
         # remove the first items - the headers
         category_url_list.pop(0)
