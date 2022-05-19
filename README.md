@@ -46,7 +46,7 @@ The following commands rely on the knowledge of how to use the terminal (Unix, m
 
   * Unix/macOS/Windows: cd P2_OpenClassroom
 
-**3 - Create a virtual environment in the folder P2_OpenClassroom**
+**3 - Create a virtual environment**
 
   * Unix/macOS: $ python3 -m venv pythonenv
   * Windows: py -m venv pythonenv
