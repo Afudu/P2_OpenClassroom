@@ -30,7 +30,7 @@ book_page_url = "http://books.toscrape.com/catalogue/the-requiem-red_995/index.h
 book_page = requests.get(book_page_url)
 
 # csv header
-fieldnames = ['product_page_url', 'universal_ product_code', 'title', 'price_including_tax',
+fieldnames = ['product_page_url', 'universal_product_code', 'title', 'price_including_tax',
               'price_excluding_tax', 'number_available', 'product_description', 'category',
               'review_rating', 'image_url']
 
@@ -40,9 +40,6 @@ if book_page.status_code == 200:
 
     # BeautifulSoup object
     book_soup = BeautifulSoup(book_page.content, 'html.parser')
-
-    # product_page_url
-    # product_page_url = book_page_url
 
     # book title
     book_title = book_soup.find("li", class_="active")
