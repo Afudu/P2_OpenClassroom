@@ -26,7 +26,7 @@ We use respectively Requests, BeautifulSoup and CSV, three dedicated Python libr
 
     **4 -** Seydou_Abdoulbaki_4_Scrap_AllBookImages.py : extends the previous by downloading and storing the image for each book.
     
-      The extract for each script, upon its execution, are saved in the [extracts/] folder that will be created if non-existent.
+      The extracts for each script, upon its successful execution, are saved in the created [extracts/] folder.
 
 # Requirement
 
@@ -46,7 +46,7 @@ The following commands rely on the knowledge of how to use the terminal (Unix, m
 
   * Unix/macOS/Windows: cd P2_OpenClassroom
 
-**3 - Create a virtual environment in the folder P2_OpenClassroom**
+**3 - Create a virtual environment**
 
   * Unix/macOS: $ python3 -m venv pythonenv
   * Windows: py -m venv pythonenv
@@ -62,7 +62,7 @@ The following commands rely on the knowledge of how to use the terminal (Unix, m
 
 **5 - Securely upgrade pip**
 
- * Unix/macOS/Windows: pip install --upgrade --user pip
+ * Unix/macOS/Windows: pip install --upgrade pip
 
 **6 - Install all dependencies**
 
