@@ -62,7 +62,7 @@ The following commands rely on the knowledge of how to use the terminal (Unix, m
 
 **5 - Securely upgrade pip**
 
- * Unix/macOS/Windows: pip install --upgrade --user pip
+ * Unix/macOS/Windows: pip install --upgrade pip
 
 **6 - Install all dependencies**
 
