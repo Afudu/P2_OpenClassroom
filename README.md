@@ -26,7 +26,7 @@ We use respectively Requests, BeautifulSoup and CSV, three dedicated Python libr
 
     **4 -** Seydou_Abdoulbaki_4_Scrap_AllBookImages.py : extends the previous by downloading and storing the image for each book.
     
-      The extract for each script, upon its execution, are saved in the created [extracts/] folder.
+      The extracts for each script, upon its execution, are saved in the created [extracts/] folder.
 
 # Requirement
 
