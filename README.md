@@ -36,7 +36,7 @@ You can download the latest version for your system from : https://www.python.or
 
 # Installation
 
-The following commands rely on the knowledge of how to user the terminal (Unix, macOS) or the command line (Windows).
+The following commands rely on the knowledge of how to use the terminal (Unix, macOS) or the command line (Windows).
 
 **1 - Get the code**
 
