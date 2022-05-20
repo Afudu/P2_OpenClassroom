@@ -158,7 +158,7 @@ for (idx, category_url) in enumerate(category_url_list):
         extract_book_urls(category_url)
 
         # Write the data to a CSV file.
-        with open('extracts/csv/categories/' + filename, 'w', newline='', encoding='utf-8') as csv_file:
+        with open('extracts/csv/categories/' + filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
             csv_file_writer = csv.writer(csv_file)
             csv_file_writer.writerow(fieldnames)
             for book_url in book_url_list:

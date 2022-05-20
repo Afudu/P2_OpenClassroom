@@ -127,7 +127,7 @@ extract_book_urls(category_url)
 
 # Write the data to a CSV file.
 filename = 'P2_2_Scrap_SingleCategoryBooks.csv'
-with open('extracts/csv/' + filename, 'w', newline='', encoding='utf-8') as csv_file:
+with open('extracts/csv/' + filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
     csv_writer = csv.writer(csv_file)
     csv_writer.writerow(fieldnames)
     for url in book_url_list:
