@@ -87,7 +87,7 @@ if book_page.status_code == 200:
                  price_excluding_tax, number_available_cleaned, product_description, category,
                  review_rating, image_url]
 else:
-    print('The book page is unavailable. Please check the URL and retry again.')
+    print('The url' + book_page_url + 'is unavailable. Please check the URL and retry again.')
 
 # Write the data to a CSV file.
 filename = 'P2_1_Scrap_SingleBookPage.csv'

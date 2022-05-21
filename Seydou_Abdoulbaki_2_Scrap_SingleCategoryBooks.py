@@ -95,7 +95,7 @@ def extract_book_data(book_page_url):
                      review_rating, image_url]
         return book_data
     else:
-        print('The book page is unavailable. Please check the URL and retry again.')
+        print('The url' + book_page_url + 'is unavailable. Please check the URL and retry again.')
 
 
 # A function that visits a category page, then extracts the book urls and stores them in
