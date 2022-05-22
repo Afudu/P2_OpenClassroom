@@ -75,6 +75,7 @@ if book_page.status_code == 200:
     string_to_numbers = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
     star_rating_class = book_soup.find("p", class_="star-rating")['class']
     star_rating_text = star_rating_class[1]
+    review_rating = 0
     for string in string_to_numbers:
         if string == star_rating_text:
             review_rating = string_to_numbers[string]
@@ -86,12 +87,13 @@ if book_page.status_code == 200:
     book_data = [book_page_url, universal_product_code, book_title_text, price_including_tax,
                  price_excluding_tax, number_available_cleaned, product_description, category,
                  review_rating, image_url]
+
+    # Write the data to a CSV file.
+    filename = 'P2_1_Scrap_SingleBookPage.csv'
+    with open('extracts/csv/' + filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(fieldnames)
+        csv_writer.writerow(book_data)
 else:
     print('The url' + book_page_url + 'is unavailable. Please check the URL and retry again.')
 
-# Write the data to a CSV file.
-filename = 'P2_1_Scrap_SingleBookPage.csv'
-with open('extracts/csv/' + filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
-    csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(fieldnames)
-    csv_writer.writerow(book_data)

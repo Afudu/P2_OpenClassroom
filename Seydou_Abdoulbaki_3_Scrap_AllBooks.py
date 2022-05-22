@@ -76,6 +76,7 @@ def extract_book_data(book_page_url):
         string_to_numbers = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
         star_rating_class = book_soup.find("p", class_="star-rating")['class']
         star_rating_text = star_rating_class[1]
+        review_rating = 0
         for string in string_to_numbers:
             if string == star_rating_text:
                 review_rating = string_to_numbers[string]
