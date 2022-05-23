@@ -36,7 +36,7 @@ fieldnames = ['product_page_url', 'universal_product_code', 'title', 'price_incl
 
 
 # Script that visits the book_page_url and extracts the book_data.
-if book_page.status_code == 200:
+if book_page.ok:
 
     # BeautifulSoup object
     book_soup = BeautifulSoup(book_page.content, 'html.parser')
@@ -95,5 +95,5 @@ if book_page.status_code == 200:
         csv_writer.writerow(fieldnames)
         csv_writer.writerow(book_data)
 else:
-    print('The url' + book_page_url + 'is unavailable. Please check the URL and retry again.')
+    print('The url' + book_page_url + 'is unavailable. Please check the URL and retry.')
 

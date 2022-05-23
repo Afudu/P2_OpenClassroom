@@ -40,7 +40,7 @@ fieldnames = ['product_page_url', 'universal_product_code', 'title', 'price_incl
 # A function that visits each book_url, extracts and returns the book_data.
 def extract_book_data(book_page_url):
     book_page = requests.get(book_page_url)
-    if book_page.status_code == 200:
+    if book_page.ok:
 
         # BeautifulSoup object
         book_soup = BeautifulSoup(book_page.content, 'html.parser')
@@ -96,7 +96,7 @@ def extract_book_data(book_page_url):
                      review_rating, image_url]
         return book_data
     else:
-        print('The url' + book_page_url + 'is unavailable. Please check the URL and retry again.')
+        print('The url' + book_page_url + 'is unavailable. Please check the URL and retry.')
 
 
 # A function that visits a category page, then extracts the book urls and stores them in
