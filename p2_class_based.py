@@ -41,9 +41,11 @@ class CheckUrl:
             self.page.raise_for_status()
             return self.cls(url)()
         except ConnectionError:
-            return 'The URL ' + self.url + ' is unavailable. Please check the URL and retry.'
+            return 'The ' + self.cls.__name__ + ' URL ' + self.url + ' is unavailable. ' \
+                                                                     'Please check the URL and retry.'
         except requests.exceptions.HTTPError:
-            return 'The '+self.cls.__name__+' URL ' + self.url + ' is unavailable. Please check the URL and retry.'
+            return 'The ' + self.cls.__name__ + ' URL ' + self.url + ' is unavailable. ' \
+                                                                     'Please check the URL and retry.'
 
 
 @CheckUrl
@@ -140,7 +142,7 @@ class Category:
 
 
 @CheckUrl
-class CategoryBookUrl:
+class CategoryBookList:
     def __init__(self, url):
         self.url = url
         self.book_url_list = []
@@ -163,7 +165,7 @@ class CategoryBookUrl:
             next_page_href = next_page_link.find("a")["href"]
             next_page_url = category_url_root + next_page_href
             self.url_index = next_page_href
-            CategoryBookUrl(next_page_url)
+            CategoryBookList(next_page_url)
         return self.book_url_list
 
 
@@ -177,7 +179,7 @@ class Scraper:
     def create_csv(self):
         for (idx, category_url) in enumerate(self.category_url_list):
             filename = "P2_3_Category" + str(idx + 1) + "_" + self.category_title_list[idx] + ".csv"
-            self.book_url_list = CategoryBookUrl(category_url)
+            self.book_url_list = CategoryBookList(category_url)
             with open('extracts/csv/' + filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
                 csv_file_writer = csv.writer(csv_file)
                 csv_file_writer.writerow(FIELDNAMES)
@@ -187,7 +189,7 @@ class Scraper:
             self.url_index = "index.html"
 
 
-b = Book('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/indexx.html')
+# b = Book('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/indexx.html')
 # c = Category(MAIN_URL)
 # o = BookUrls('https://books.toscrape.com/catalogue/category/books/mystery_3/indexx.html')
 # print(s.url_soup('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/indexx.html'))
