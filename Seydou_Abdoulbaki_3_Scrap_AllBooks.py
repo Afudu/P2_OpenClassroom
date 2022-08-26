@@ -97,8 +97,8 @@ def extract_book_data(book_page_url):
 # the book_url_list
 def extract_book_urls(category_page_url):
     global category_url_index
-    category_page = requests.get(category_page_url)
-    soup = BeautifulSoup(category_page.content, 'html.parser')
+    category_page_req = requests.get(category_page_url)
+    soup = BeautifulSoup(category_page_req.content, 'html.parser')
     category_url_root = category_page_url.replace(category_url_index, "")
     book_urls = soup.find_all("h3")  # all book urls are in h3 tags, and each in class="product_pod"
 
@@ -164,4 +164,3 @@ for (idx, category_url) in enumerate(category_url_list):
         category_url_index = "index.html"
     else:
         print('The URL' + category_url + 'is unavailable. Please check the URL and retry.')
-

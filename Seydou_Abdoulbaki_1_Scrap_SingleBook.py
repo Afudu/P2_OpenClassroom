@@ -26,8 +26,8 @@ path = 'extracts/csv'
 os.makedirs(path, exist_ok=True)
 
 # url to scrape : page of Requiem Red book
-book_page_url = "http://books.toscrape.com/catalogue/the-requiem-red_995/index.html"
-book_page = requests.get(book_page_url)
+book_url = "http://books.toscrape.com/catalogue/the-requiem-red_995/index.html"
+book_page = requests.get(book_url)
 
 # csv header
 fieldnames = ['product_page_url', 'universal_product_code', 'title', 'price_including_tax',
@@ -44,6 +44,7 @@ if book_page.ok:
     # book title
     book_title = book_soup.find("li", class_="active")
     book_title_text = book_title.text
+    print(book_title)
 
     # product information  - contained in a table
     book_table_class = book_soup.find("table", class_="table")
@@ -84,7 +85,7 @@ if book_page.ok:
     image_source = book_soup.find("img")['src']
     image_url = image_source.replace("../..", "http://books.toscrape.com")
 
-    book_data = [book_page_url, universal_product_code, book_title_text, price_including_tax,
+    book_data = [book_url, universal_product_code, book_title_text, price_including_tax,
                  price_excluding_tax, number_available_cleaned, product_description, category,
                  review_rating, image_url]
 
@@ -95,5 +96,4 @@ if book_page.ok:
         csv_writer.writerow(fieldnames)
         csv_writer.writerow(book_data)
 else:
-    print('The url' + book_page_url + 'is unavailable. Please check the URL and retry.')
-
+    print('The url' + book_url + 'is unavailable. Please check the URL and retry.')

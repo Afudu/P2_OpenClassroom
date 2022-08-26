@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-# the list of folders that will contain the extracts
+# the folders that will contain the extracts
 paths = ['extracts/img', 'extracts/csv/categories']
 
 # create the folders if they do not exist
@@ -124,7 +124,7 @@ def extract_book_urls(category_page_url):
 
 # Function that extracts all the book categories available on the website.
 def extract_category_urls():
-    main_url = "http://books.toscrape.com/"
+    main_url = "https://books.toscrape.com/"
     home_page = requests.get(main_url)
     if home_page.ok:
         home_soup = BeautifulSoup(home_page.content, 'html.parser')
@@ -143,7 +143,7 @@ def extract_category_urls():
         category_url_list.pop(0)
         category_title_list.pop(0)
     else:
-        print('The url' + main_url + 'is unavailable. Please check the URL and retry.')
+        print('The URL' + main_url + 'is unavailable. Please check the URL and retry.')
 
 
 # Call the function that extracts all category urls.
@@ -152,12 +152,12 @@ extract_category_urls()
 # Extract all book_urls for each category then write their data in a csv file
 # with the category title in the file name.
 for (idx, category_url) in enumerate(category_url_list):
-    category_page = requests.get(category_url)
+    category_page_req = requests.get(category_url)
 
-    if category_page.ok:
+    if category_page_req.ok:
         filename = "P2_3_Category" + str(idx + 1) + "_" + category_title_list[idx] + ".csv"
         extract_book_urls(category_url)
-
+        print(str(idx+1)+"_"+category_title_list[idx])
         # Write the data to a CSV file.
         with open('extracts/csv/categories/' + filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
             csv_file_writer = csv.writer(csv_file)

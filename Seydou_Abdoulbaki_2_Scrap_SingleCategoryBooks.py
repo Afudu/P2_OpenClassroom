@@ -79,13 +79,13 @@ def extract_book_data(book_page_url):
         category = breadcrumb_links[2].text
 
         # review_rating
-        string_to_numbers = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
+        string_to_number = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
         star_rating_class = book_soup.find("p", class_="star-rating")['class']
         star_rating_text = star_rating_class[1]
         review_rating = 0
-        for string in string_to_numbers:
+        for string in string_to_number:
             if string == star_rating_text:
-                review_rating = string_to_numbers[string]
+                review_rating = string_to_number[string]
 
         # image_url - first image in the book_soup
         image_source = book_soup.find("img")['src']
