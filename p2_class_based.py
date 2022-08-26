@@ -31,15 +31,15 @@ class SoupObject:
 
 
 class CheckUrl:
-    def __init__(self, fn):
-        self.fn = fn
+    def __init__(self, cls):
+        self.cls = cls
 
     def __call__(self, url):
         self.url = url
         try:
             self.page = requests.get(self.url)
             self.page.raise_for_status()
-            return self.fn(url)()
+            return self.cls(url)()
         except ConnectionError:
             return 'The URL ' + self.url + ' is unavailable. Please check the URL and retry.'
         except requests.exceptions.HTTPError:
