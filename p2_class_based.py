@@ -44,7 +44,7 @@ class CheckUrl:
             return 'The ' + self.cls.__name__ + ' URL ' + self.url + ' is unavailable. ' \
                                                                      'Please check the URL and retry.'
         except requests.exceptions.HTTPError:
-            return 'The ' + self.cls.__name__ + ' URL ' + self.url + ' is unavailable. ' \
+            return 'The ' + self.cls.__name__ + ' URL ' + self.url + ' is not accessible. ' \
                                                                      'Please check the URL and retry.'
 
 
@@ -189,12 +189,14 @@ class Scraper:
             self.url_index = "index.html"
 
 
-# b = Book('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/indexx.html')
+b = Book('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/indexx.html')
 # c = Category(MAIN_URL)
 # o = BookUrls('https://books.toscrape.com/catalogue/category/books/mystery_3/indexx.html')
 # print(s.url_soup('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/indexx.html'))
 # print(requests.get('http://books.toscrape.com/catalogue/its-only-the-himalayas_981/indexx.html'))
 # print(b)
+# help(Book)
 # print(o)
 # print(c)
-Scraper().create_csv()
+scraper = Scraper()
+scraper.create_csv()
