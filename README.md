@@ -2,7 +2,7 @@
 
 **Project 2:** Use Python Basics for Market Analysis
 
-**Student:** Abdoulbaki Seydou
+**Student:** Abdoul Baki Seydou
 
 **Date:** 09/05/2022
 
