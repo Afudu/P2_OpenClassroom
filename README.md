@@ -21,7 +21,7 @@
 ## Summary
 In this project, as a marketing analyst at Books Online, a major online bookshop for used books,
 our team is tasked to develop a monitoring system that extracts pricing information from 
-the Book to Scrape's website[http://books.toscrape.com/], a rival online retailer.
+the Book to Scrape's website http://books.toscrape.com/, a rival online retailer.
 
 
 ## Technologies Used
