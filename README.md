@@ -15,14 +15,14 @@
    - [Prerequisites](#prerequisites)
    - [Setup on macOS/Linux](#setup-on-macoslinux)
    - [Setup on Windows](#setup-on-windows)
-   - [Running the Application](#running-the-code)
+   - [Running the Application](#running-the-application)
    - [Linting](#linting)
 
 ## Summary
-In this project, as a marketing analyst at Books Online, a major online bookshop for used books,
-our team is tasked to develop a monitoring system that extracts pricing information from 
-the Book to Scrape's website[http://books.toscrape.com/], a rival online retailer.
-
+This project involves developing a monitoring system for Books Online, 
+a major online retailer specializing in used books. 
+As a marketing analyst,  the goal is to extract and monitor pricing information from a competitor's website,
+[Book to Scrape](http://books.toscrape.com/).  The system will scrape book data and store it for analysis.
 
 ## Technologies Used
 - **Programming Language:** Python  
@@ -81,23 +81,25 @@ the Book to Scrape's website[http://books.toscrape.com/], a rival online retaile
    ```bash
    .\venv\Scripts\Activate
 
-### Running the code
+### Running the application
 
 * The repository contains four scripts:
 
-    **1 -** AS_1_Scrap_SingleBook.py : extracts the data of a single book.
+    **1 -** AS_1_Scrap_SingleBook.py : Extracts the data for a single book.
 
-    **2 -** AS_2_Scrap_SingleCategoryBooks.py : extracts the data of all books in a single category.
+    **2 -** AS_2_Scrap_SingleCategoryBooks.py : Extracts the data for all books in a single category.
 
-    **3 -** AS_3_Scrap_AllBooks.py : extracts the data of all books in all categories.
+    **3 -** AS_3_Scrap_AllBooks.py : Extracts the data for all books across all categories.
 
-    **4 -** AS_4_Scrap_AllBookImages.py : extends the previous by storing the image for each book.
+    **4 -** AS_4_Scrap_AllBookImages.py : Extends the previous by storing the image for each book.
 
-* To run each of the four scripts
+
+* To execute a script:
    ```bash
-   python script_file.py
+   python script_file_name.py
   
-* The extracts for each script, upon its execution, are saved in the created ```extracts``` folder.
+* **Output**: The data extracted by each script is saved in the ```extracts``` folder, 
+   which is created upon execution.
 
 ### Linting
 
