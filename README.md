@@ -102,7 +102,7 @@ As a marketing analyst,  the goal is to extract and monitor pricing information 
    which is created upon execution.
 
 ### Linting
-
-- **Run Linting**
+The codebase is fully linted and free of errors.
+- **To Run Linting**
   ```bash
   flake8
